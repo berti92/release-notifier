@@ -33,6 +33,13 @@ After you installed Ruby, then install the necessary gems via
 bundle install
 ```
 
+Then create and migrate the database via 
+
+```
+rails db:create
+rails db:migrate
+```
+
 ## How to use
 Via `rails s` you can run the rails server and on 127.0.0.1:3000 you can setup your release checks.
 
