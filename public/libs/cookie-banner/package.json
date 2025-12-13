@@ -1,0 +1,33 @@
+{
+  "name": "cookie-banner",
+  "title": "Cookie Banner",
+  "description": "Javascript based cookie-info banner for complying with EU cookie law.",
+  "version": "1.2.2",
+  "homepage": "http://cookiebanner.eu/",
+  "author": {
+    "name": "Good Code and Cookie Banner contributors",
+    "url": "https://github.com/dobarkod/cookie-banner/graphs/contributors"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dobarkod/cookie-banner"
+  },
+  "bugs": {
+    "url": "https://github.com/dobarkod/cookie-banner/issues"
+  },
+  "license": "MIT",
+  "scripts": {
+    "preversion": "npm test",
+    "version": "make clean && make && git add -A dist",
+    "push": "git push && git push origin --tags",
+    "test": "make test",
+    "make": "make"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": ">=4.18.2",
+    "jshint": "^2.13.6",
+    "phantomjs-prebuilt": "~2.1.1",
+    "uglify-js": "~2.7.4"
+  }
+}

@@ -1,0 +1,7 @@
+<h1>Sad to see you go :(</h1>
+<% unless params[:remove].blank? %>
+    <p>Your email was removed!</p>
+<% else %>
+<p>If you really want to remove your email adress from our service, then click the following button.</p>
+<%= link_to 'Remove my email', block_mail_url(mail: params[:mail], remove: 1), class: 'button is-danger' %>
+<% end %>

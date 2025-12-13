@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>release-notifier!</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@creativebulma/bulma-tooltip@1.2.0/dist/bulma-tooltip.min.css">
+    <link href="https://emoji-css.afeld.me/emoji.css" rel="stylesheet">
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+    <link href="/libs/nice-select2/dist/css/nice-select2.css" rel="stylesheet" />
+    <script src="/libs/nice-select2/dist/js/nice-select2.js"></script>
+    <script async defer data-website-id="b4174154-2a37-4e19-a69d-fd88b4916977" src="https://umami.devbert.de/jquery-helper.js"></script>
+    <%= yield :head %>
+  </head>
+
+  <body>
+    <div class="header">
+      <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+          <div class="logo">
+            <a href="<%= notifications_path %>">
+              <i class="em em-rocket" aria-role="presentation" aria-label="ROCKET"></i>
+              release-notifier!
+            </a>
+          </div>
+        </div>
+
+        <div class="navbar-menu is-active" id="navMenu">
+          <div class="navbar-start">
+              <a href="<%= notifications_path %>" class="navbar-item">
+                My notifications
+              </a>
+          </div>
+
+          <div class="navbar-end">
+          </div>
+        </div>
+      </nav>
+    </div>
+    <% if notice %>
+      <article class="message is-success">
+        <div class="message-body">
+          <%= notice %>
+        </div>
+      </article>
+    <% end %>
+    <% if alert %>
+      <article class="message is-danger">
+        <div class="message-body">
+          <%= alert %>
+        </div>
+      </article>
+    <% end %>
+    <div class="content">
+      <%= yield %>
+    </div>
+    <div class="footer">
+      Built with ❤️ by <a href="https://devbert.de/" target="_blank">Devbert</a> © 2022
+    </div>
+  </body>
+</html>

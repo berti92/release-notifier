@@ -1,0 +1,50 @@
+.header {
+    width: 100%;
+    .logo {
+        font-size: 18px;
+        font-weight: bold;
+        display: inline-block;
+        line-height: 56px;
+        padding-left: 15px;        
+        padding-right: 15px;        
+
+    }
+    .buttons {
+        float:right;
+    }
+}
+.footer {
+    margin-top: 128px;
+    min-height: 64px;
+    line-height: 64px;
+    text-align: center;
+}
+.content {
+    padding: 20px;
+    width: 90%;
+    margin: 0px auto;
+}
+.tooltip-btn {
+    margin-left: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-weight: bold;
+    font-size: 16px;
+}
+.notifications.panel {
+    max-width: 512px;
+}
+.nice-select {
+    min-width: 200px !important;
+    ul {
+        margin-left: 0px !important;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .header {
+        .buttons {
+            float: unset;
+        }
+    }
+}

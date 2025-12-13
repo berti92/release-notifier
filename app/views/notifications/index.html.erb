@@ -1,0 +1,23 @@
+<% if @notifications.count == 0 %>
+  <h1>
+    My notifications
+  </h1>
+  <p>You don't have any notifications created yet!</p>
+<% else %>
+  <article class="notifications panel is-primary">
+    <p class="panel-heading mb-0">
+      My notifications
+    </p>
+    <% @notifications.each do |notification| %>
+      <a href="<%= edit_notification_path(notification.hashid) %>" class="panel-block">
+        <%= notification.name %>
+      </a>
+    <% end %>
+  </article>
+<% end %>
+
+<div class="mt-2">
+    <a href="<%= new_notification_path %>" class="button is-primary">
+        + Notification
+    </a>
+</div>

@@ -1,0 +1,135 @@
+<%
+  disabled_repo_entries = []
+%>
+<%= form_with model: @notification, data: {
+  controller: 'notification'  
+} do |form| %>
+  <div class="field">
+    <%= form.label :name, class: 'label' do %>
+      Name
+      <span class="tooltip-btn" data-tooltip="Just for you to identify it in the overview.">?</span>
+    <% end %>
+    <div class="control">
+      <%= form.text_field :name, class: 'input', required: true %>
+    </div>
+  </div>
+  <div class="field" style="display: none;">
+    <label class="label">Do you want to receive notifications for ...</label>
+    <div class="control">
+      <label class="radio">
+        <input type="radio" name="notification_type" value="release" checked>
+        new releases?
+      </label>
+      <label class="radio">
+        <input type="radio" name="notification_type" value="cve" disabled title="Coming soon...">
+        new CVEs?
+      </label>
+    </div>
+  </div>
+  <div class="field">
+    <%= form.label :repo_type, 'Type / Projects', class: 'label' %>
+    <div class="control">
+      <div style="height: 40px;">
+        <%= form.select :repo_type, options_for_select(Notification.sorted_options_for_select, selected: @notification.repo_type, disabled: disabled_repo_entries), {}, { data: {action:"change->notification#showHideRepoField"}} %>
+      </div>
+      <a href="https://cloud.devbert.de/index.php/apps/forms/s/gSXwaKa6BxzWYGJYDpwy39xE" target="_blank">Your software is not on the list?</a>
+    </div>
+  </div>
+  <div class="field">
+    <%= form.label :repo_type, class: 'label' do %>
+      Words to skip the notification
+      <span class="tooltip-btn has-tooltip-multiline" data-tooltip="Type in words (case insensitive and comma separated) to skip the notification. E.g. if you want to skip a notification, if the release includes the word 'alpha'.">?</span>
+    <% end %>
+    <div class="control">
+      <div class="control">
+        <%= form.text_field :stop_words, class: 'input' %>
+      </div>
+    </div>
+  </div>
+  <div id="repo_text_field_div" style="display: <%= (@notification.repo_type == 'github' ? 'block' : 'none') %>;">
+    <div class="field">
+      <%= form.label :repo, class: 'label' do %>
+        Repository
+        <span class="tooltip-btn has-tooltip-multiline" data-tooltip="This repository will be checked for new releases. Please type in username/repository or the full github url.">?</span>
+      <% end %>
+      <div class="control">
+        <%= form.text_field :repo, class: 'input', placeholder: "mozilla/firefox or https://github.com/mozilla/firefox", required: true %>
+      </div>
+    </div>
+  </div>
+  <div class="tabs is-boxed">
+    <ul style="margin-left: 0px;">
+      <li class="is-active" data-action="click->notification#showTab" data-id="mailTab">
+        <a>Send an email</a>
+      </li>
+      <li data-action="click->notification#showTab" data-id="webhookTab">
+        <a>Send to webhook / HTTP-Request</a>
+      </li>
+    </ul>
+  </div>
+  <div id="mailTab" class="field">
+    <div class="field">
+      <%= form.label :email, class: 'label' do %>
+        Email
+        <span class="tooltip-btn has-tooltip-multiline" data-tooltip="If you want to receive a notification via email, then type in the email which should receive that notification.">?</span>
+      <% end %>
+      <div class="control">
+        <%= form.email_field :email, class: 'input' %>
+      </div>
+    </div>
+  </div>
+  <div id="webhookTab" style="display: none;" class="field">
+    <div class="field">
+      <%= form.label :webhook_method, class: 'label' do %>
+        Webhook - HTTP method
+        <span class="tooltip-btn has-tooltip-multiline" data-tooltip="The notification will be sent via this HTTP method to the webhook.">?</span>
+      <% end %>
+      <div class="control">
+        <% Notification::WEBHOOK_METHODS.each do |w_method| %>
+          <% selected = w_method.to_s == @notification.webhook_method %>
+          <%= form.radio_button :webhook_method, w_method, checked: selected %>
+          <span class="mr-2"><%= w_method.to_s %></span>
+        <% end %>
+      </div>
+    </div>
+    <div class="field">
+      <%= form.label :webhook_url, class: 'label' do %>
+        Webhook - URL
+        <span class="tooltip-btn has-tooltip-multiline" data-tooltip="The URL of the webhook. The notification is sent to this URL.">?</span>
+      <% end %>
+      <div class="control">
+        <%= form.text_field :webhook_url, class: 'input' %>
+      </div>
+    </div>
+    <blockquote>You can set a textmark in the url and the payload. <b>##RELEASE_MSG##</b> will be replaced with the release text!</blockquote>
+    <div class="field">
+      <%= form.label :webhook_content_type, class: 'label' do %>
+        Webhook - content type
+        <span class="tooltip-btn has-tooltip-multiline" data-tooltip="This is the content type of the request which is sent to the webhook. If your payload is json, then type in application/json">?</span>
+      <% end %>
+      <div class="control">
+        <%= form.text_field :webhook_content_type, class: 'input' %>
+      </div>
+    </div>
+    <div class="field">
+      <%= form.label :webhook_payload, class: 'label' do %>
+        Webhook - payload
+        <span class="tooltip-btn has-tooltip-multiline" data-tooltip="Thats the payload which will be sent to your webhook. If your HTTP-Method is GET then this field will be ignored.">?</span>
+      <% end %>
+      <div class="control">
+        <%= form.text_area :webhook_payload, class: 'textarea' %>
+      </div>
+    </div>
+  </div>
+  <blockquote>
+    If you want multiple notifications per repository, then please create for each email and webhook an own notification!<br>
+    If you don't want to receive an email or webhook then please leave the fields empty or unpicked.<br><br><br>
+    <b>Every repository will be checked hourly for new releases!</b>
+  </blockquote>
+
+  <%= form.submit nil, class: 'button is-primary' %>
+<% end %>
+
+<script type="text/javascript">
+  NiceSelect.bind(document.getElementById("notification_repo_type"), {searchable: true, placeholder: 'select', searchtext: 'Search', selectedtext: 'geselecteerd'});
+</script>

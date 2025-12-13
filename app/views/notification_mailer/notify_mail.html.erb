@@ -1,0 +1,8 @@
+<h1><%= @subject %></h1>
+<p>Here you can see the detailed changes of this release: <a href="<%= @link %>"><%= @project_name %></a>
+<br><br>
+<p>You are receiving this mail, because you set up a notification for this repository/project on release-notifier.</p>
+<br><br>
+<p>If you didn't setup this notification, then you can disable all notifications by clicking on the following link:</p>
+<a href="<%= block_mail_url(mail: @notification.email) %>">I don't want to receive any notifications</a>
+

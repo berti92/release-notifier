@@ -1,0 +1,2 @@
+class BlockedMail < ApplicationRecord
+end

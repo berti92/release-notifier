@@ -1,0 +1,107 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t "hello"
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t("hello") %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# The following keys must be escaped otherwise they will not be retrieved by
+# the default I18n backend:
+#
+# true, false, on, off, yes, no
+#
+# Instead, surround them with single quotes.
+#
+# en:
+#   "true": "foo"
+#
+# To learn more, please read the Rails Internationalization guide
+# available at https://guides.rubyonrails.org/i18n.html.
+
+en:
+  hello: "Hello world"
+  repo_types:
+    github: Choose GitHub repository
+    postgres: Postgres
+    mysql: MySQL
+    ruby: Ruby
+    php: PHP
+    go: Go
+    rust: Rust
+    python: Python
+    maria_db: MariaDB
+    docker: Docker
+    varnish: Varnish Cache
+    httpd: Apache2 httpd
+    github_react: React
+    github_nodejs: Node.js
+    github_vuejs: Vue.js
+    github_rails: Rails
+    github_angular: Angular
+    github_jquery: jQuery
+    github_expressjs: Express JS
+    github_emberjs: Ember.js
+    github_spring: Spring Framework
+    github_redis: Redis
+    github_codeigniter: CodeIgniter4
+    github_elasticsearch: Elasticsearch
+    github_zincsearch: ZincSearch
+    github_devise: Devise (Gem)
+    openssh: OpenSSH
+    github_sudo: Sudo
+    github_fail2ban: Fail2ban
+    github_dokku: Dokku
+    github_mrsk: MRSK
+    github_portainer: Portainer
+    github_rocketchat: Rocket.Chat
+    github_mattermost_server: Mattermost (Server)
+    github_nextcloud_server: Nextcloud (Server)
+    openproject: OpenProject
+    wordpress: Wordpress
+    github_gatsby: Gatsby
+    github_hugo: Hugo
+    github_strapi: Strapi
+    mongodb: MongoDB
+    github_umami: umami
+    github_nocodb: NocoDB
+    github_gitea: Gitea
+    github_gogs: Gogs
+    github_vscode: Visual Studio Code
+    github_tailwind: 'tailwindcss'
+    github_bootstrap: 'Bootstrap'
+    github_uikit: 'UIkit'
+    github_bulma: 'Bulma'
+    github_vuetify: 'Vuetify'
+    github_caddy: 'caddy'
+    github_traefik: 'traefik'
+    gitlab_foss: 'GitLab FOSS/Community'
+    gitlab_enterprise: 'GitLab Enterprise'
+    gitlab_runner: 'GitLab Runner'
+    github_prometheus: 'Prometheus'
+    mantis: 'MantisBT'
+    bugzilla: 'Bugzilla'
+    github_openwrt: 'OpenWrt'
+    github_openssl: 'OpenSSL'
+    opn_sense: OPNsense
+    mikrotik: Mikrotik
+    github_rabbitmq: 'RabbitMQ'
+    github_laravel: 'Laravel'
+    firefox: 'Firefox'
+    chromium: 'Chromium'
+    eclipse: 'Eclipse IDE'
+    redmine: Redmine
+    java: Java
+    symfony_stable: Symfony Stable
+    symfony_lts: Symfony LTS
+    django: Django

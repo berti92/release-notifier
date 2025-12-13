@@ -1,0 +1,13 @@
+<h1>Edit notification</h1>
+<%= render 'form' %>
+<div>
+<a class="button mt-2" href="<%= notifications_path %>">
+  Back to notifications
+</a>
+</div>
+<div>
+<a class="button mt-2" href="<%= duplicate_notification_path(@notification.hashid) %>" >
+  Duplicate notification
+</a>
+</div>
+<%= button_to "Delete notification", notification_path(@notification.hashid), method: :delete, class: 'button is-danger mt-2', onclick: 'return confirm("Do you really want to delete this notification?");', data: { turbo: false} %>
