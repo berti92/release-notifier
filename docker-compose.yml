@@ -1,0 +1,12 @@
+version: '3.7'
+services:
+  app:
+    build: .
+    restart: always
+    environment:
+      - RAILS_ENV=production
+      - SECRET_KEY_BASE=SOMERANDOMSTRING
+    ports:
+      - "13000:3000"
+    volumes:
+      - ".:/var/www/app"

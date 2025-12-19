@@ -11,30 +11,30 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 2025_05_30_113604) do
-  create_table "account_login_change_keys", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "account_login_change_keys", force: :cascade do |t|
     t.string "key", null: false
     t.string "login", null: false
     t.datetime "deadline", null: false
   end
 
-  create_table "account_password_reset_keys", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "account_password_reset_keys", force: :cascade do |t|
     t.string "key", null: false
     t.datetime "deadline", null: false
-    t.datetime "email_last_sent", default: "2024-10-18 08:37:27", null: false
+    t.datetime "email_last_sent", default: "2025-12-19 19:06:06", null: false
   end
 
-  create_table "account_remember_keys", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "account_remember_keys", force: :cascade do |t|
     t.string "key", null: false
     t.datetime "deadline", null: false
   end
 
-  create_table "account_verification_keys", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "account_verification_keys", force: :cascade do |t|
     t.string "key", null: false
-    t.datetime "requested_at", default: "2024-10-18 08:37:27", null: false
-    t.datetime "email_last_sent", default: "2024-10-18 08:37:27", null: false
+    t.datetime "requested_at", default: "2025-12-19 19:06:06", null: false
+    t.datetime "email_last_sent", default: "2025-12-19 19:06:06", null: false
   end
 
-  create_table "accounts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "accounts", force: :cascade do |t|
     t.integer "status", default: 1, null: false
     t.string "email", null: false
     t.string "password_hash"
@@ -49,14 +49,14 @@ ActiveRecord::Schema[7.0].define(version: 2025_05_30_113604) do
     t.decimal "next_payment_value", precision: 10, scale: 2
     t.string "next_payment_currency"
     t.date "active_until"
-    t.timestamp "created_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.datetime "created_at", precision: nil, default: -> { "now()" }, null: false
     t.boolean "newsletter", default: false
     t.index ["email"], name: "index_accounts_on_email", unique: true
   end
 
-  create_table "ahoy_events", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.bigint "visit_id"
-    t.bigint "user_id"
+  create_table "ahoy_events", force: :cascade do |t|
+    t.integer "visit_id"
+    t.integer "user_id"
     t.string "name"
     t.json "properties"
     t.datetime "time"
@@ -65,10 +65,10 @@ ActiveRecord::Schema[7.0].define(version: 2025_05_30_113604) do
     t.index ["visit_id"], name: "index_ahoy_events_on_visit_id"
   end
 
-  create_table "ahoy_visits", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "ahoy_visits", force: :cascade do |t|
     t.string "visit_token"
     t.string "visitor_token"
-    t.bigint "user_id"
+    t.integer "user_id"
     t.string "ip"
     t.text "user_agent"
     t.text "referrer"
@@ -96,13 +96,13 @@ ActiveRecord::Schema[7.0].define(version: 2025_05_30_113604) do
     t.index ["visitor_token", "started_at"], name: "index_ahoy_visits_on_visitor_token_and_started_at"
   end
 
-  create_table "blocked_mails", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "blocked_mails", force: :cascade do |t|
     t.string "mail_address", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "notifications", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "notifications", force: :cascade do |t|
     t.string "name", null: false
     t.integer "repo_type", null: false
     t.text "repo", null: false
@@ -112,8 +112,8 @@ ActiveRecord::Schema[7.0].define(version: 2025_05_30_113604) do
     t.string "webhook_content_type"
     t.text "webhook_payload"
     t.string "last_release"
-    t.bigint "account_id"
-    t.bigint "repository_id"
+    t.integer "account_id"
+    t.integer "repository_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "stop_words"
@@ -121,7 +121,7 @@ ActiveRecord::Schema[7.0].define(version: 2025_05_30_113604) do
     t.index ["repository_id"], name: "index_notifications_on_repository_id"
   end
 
-  create_table "repositories", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "repositories", force: :cascade do |t|
     t.integer "repo_type", null: false
     t.text "repo", null: false
     t.string "last_release"
@@ -130,7 +130,7 @@ ActiveRecord::Schema[7.0].define(version: 2025_05_30_113604) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "webhook_logs", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "webhook_logs", force: :cascade do |t|
     t.text "data"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
