@@ -32,7 +32,6 @@
       <div style="height: 40px;">
         <%= form.select :repo_type, options_for_select(Notification.sorted_options_for_select, selected: @notification.repo_type, disabled: disabled_repo_entries), {}, { data: {action:"change->notification#showHideRepoField"}} %>
       </div>
-      <a href="https://cloud.devbert.de/index.php/apps/forms/s/gSXwaKa6BxzWYGJYDpwy39xE" target="_blank">Your software is not on the list?</a>
     </div>
   </div>
   <div class="field">
